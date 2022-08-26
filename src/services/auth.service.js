@@ -55,19 +55,19 @@ const refreshAuth = async (refreshToken) => {
 
 /**
  * Reset password
- * @param {string} resetPasswordToken
+ * @param {{code, email}} resetPasswordToken
  * @param {string} newPassword
  * @returns {Promise}
  */
 const resetPassword = async (resetPasswordToken, newPassword) => {
   try {
-    const resetPasswordTokenDoc = await tokenService.verifyToken(resetPasswordToken, tokenTypes.RESET_PASSWORD);
-    const user = await userService.getUserById(resetPasswordTokenDoc.user);
+    const resetPasswordTokenDoc = await codeService.verifyToken(resetPasswordToken);
+    const user = await userService.getUserByEmail(resetPasswordTokenDoc.email);
     if (!user) {
       throw new Error();
     }
     await userService.updateUserById(user.id, { password: newPassword });
-    await Token.deleteMany({ user: user.id, type: tokenTypes.RESET_PASSWORD });
+    await Code.deleteOne({ email: user.email });
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Password reset failed');
   }

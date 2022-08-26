@@ -32,7 +32,7 @@ const createCode = async (codeParam) => {
 };
 
 const verifyToken = async (verifyEmailToken) => {
-  const codeDoc = await Code.findOne({ email: verifyEmailToken.email });
+  const codeDoc = await Code.findOne({ email: verifyEmailToken.email, code: verifyEmailToken.code });
   if (!codeDoc) {
     throw new Error('Code not found');
   }
