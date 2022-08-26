@@ -1,11 +1,15 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const { authService, userService, tokenService, emailService } = require('../services');
+const { authService, userService, tokenService, emailService, codeService } = require('../services');
 
 const register = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
-  const tokens = await tokenService.generateAuthTokens(user);
-  res.status(httpStatus.CREATED).send({ user, tokens });
+  // verification code generation
+  const verificationCode = Math.floor(100000 + Math.random() * 900000);
+  const code = await codeService.createCode({ email: req.body.email, code: verificationCode });
+  // Send verification code to user's email
+  // await emailService.sendVerificationEmail(req.body.email, verificationCode);
+  res.status(httpStatus.CREATED).send({ user, code });
 });
 
 const login = catchAsync(async (req, res) => {
@@ -43,7 +47,7 @@ const sendVerificationEmail = catchAsync(async (req, res) => {
 });
 
 const verifyEmail = catchAsync(async (req, res) => {
-  await authService.verifyEmail(req.query.token);
+  await authService.verifyEmail(req.body);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
