@@ -31,6 +31,15 @@ const createCode = async (codeParam) => {
   return Code.create(codeParam);
 };
 
+const verifyToken = async (verifyEmailToken) => {
+  const codeDoc = await Code.findOne({ email: verifyEmailToken.email });
+  if (!codeDoc) {
+    throw new Error('Code not found');
+  }
+  return codeDoc;
+};
+
 module.exports = {
   createCode,
+  verifyToken,
 };

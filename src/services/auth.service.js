@@ -1,7 +1,9 @@
 const httpStatus = require('http-status');
 const tokenService = require('./token.service');
 const userService = require('./user.service');
+const codeService = require('./code.service');
 const Token = require('../models/token.model');
+const Code = require('../models/code.model');
 const ApiError = require('../utils/ApiError');
 const { tokenTypes } = require('../config/tokens');
 
@@ -73,17 +75,17 @@ const resetPassword = async (resetPasswordToken, newPassword) => {
 
 /**
  * Verify email
- * @param {string} verifyEmailToken
+ * @param {object} verifyEmailToken
  * @returns {Promise}
  */
 const verifyEmail = async (verifyEmailToken) => {
   try {
-    const verifyEmailTokenDoc = await tokenService.verifyToken(verifyEmailToken, tokenTypes.VERIFY_EMAIL);
-    const user = await userService.getUserById(verifyEmailTokenDoc.user);
+    const verifyEmailTokenDoc = await codeService.verifyToken(verifyEmailToken);
+    const user = await userService.getUserByEmail(verifyEmailTokenDoc.email);
     if (!user) {
       throw new Error();
     }
-    await Token.deleteMany({ user: user.id, type: tokenTypes.VERIFY_EMAIL });
+    await Code.deleteOne({ email: user.email });
     await userService.updateUserById(user.id, { isEmailVerified: true });
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Email verification failed');
