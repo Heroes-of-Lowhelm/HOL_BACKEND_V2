@@ -51,6 +51,13 @@ const sendVerificationEmail = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const sendVerificationCode = catchAsync(async (req, res) => {
+  const verificationCode = Math.floor(100000 + Math.random() * 900000);
+  await codeService.createCode({ email: req.body.email, code: verificationCode });
+  // await emailService.sendVerificationEmail(req.body.email, verificationCode);
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 const verifyEmail = catchAsync(async (req, res) => {
   await authService.verifyEmail(req.body);
   res.status(httpStatus.NO_CONTENT).send();
@@ -65,4 +72,5 @@ module.exports = {
   resetPassword,
   sendVerificationEmail,
   verifyEmail,
+  sendVerificationCode,
 };

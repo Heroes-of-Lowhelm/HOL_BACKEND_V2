@@ -34,6 +34,12 @@ const forgotPassword = {
   }),
 };
 
+const resendCode = {
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
+  }),
+};
+
 const resetPassword = {
   body: Joi.object().keys({
     email: Joi.string().email().required(),
@@ -57,4 +63,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   verifyEmail,
+  resendCode,
 };
