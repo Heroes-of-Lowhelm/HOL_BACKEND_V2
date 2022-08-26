@@ -8,7 +8,7 @@ const register = catchAsync(async (req, res) => {
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
   await codeService.createCode({ email: req.body.email, code: verificationCode });
   // Send verification code to user's email
-  // await emailService.sendVerificationEmail(req.body.email, verificationCode);
+  await emailService.sendVerificationEmail(req.body.email, verificationCode);
   res.status(httpStatus.CREATED).send({ user });
 });
 
@@ -19,7 +19,7 @@ const login = catchAsync(async (req, res) => {
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
   await codeService.createCode({ email: req.body.email, code: verificationCode });
   // Send verification code to user's email
-  // await emailService.sendVerificationEmail(req.body.email, verificationCode);
+  await emailService.sendVerificationEmail(req.body.email, verificationCode);
   res.send({ user });
 });
 
@@ -36,7 +36,7 @@ const refreshTokens = catchAsync(async (req, res) => {
 const forgotPassword = catchAsync(async (req, res) => {
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
   await codeService.createCode({ email: req.body.email, code: verificationCode });
-  // await emailService.sendResetPasswordEmail(req.body.email, verificationCode);
+  await emailService.sendResetPasswordEmail(req.body.email, verificationCode);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -54,7 +54,7 @@ const sendVerificationEmail = catchAsync(async (req, res) => {
 const sendVerificationCode = catchAsync(async (req, res) => {
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
   await codeService.createCode({ email: req.body.email, code: verificationCode });
-  // await emailService.sendVerificationEmail(req.body.email, verificationCode);
+  await emailService.sendVerificationEmail(req.body.email, verificationCode);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
