@@ -63,7 +63,7 @@ module.exports = {
   // },
   email: {
     smtp: {
-      service: 'gmail',
+      service: 'SendPulse',
       auth: {
         user: envVars.SMTP_USERNAME,
         pass: envVars.SMTP_PASSWORD,
