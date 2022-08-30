@@ -16,10 +16,10 @@ const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
   const user = await authService.loginUserWithEmailAndPassword(email, password);
 
-  const verificationCode = Math.floor(100000 + Math.random() * 900000);
-  await codeService.createCode({ email: req.body.email, code: verificationCode });
+  // const verificationCode = Math.floor(100000 + Math.random() * 900000);
+  // await codeService.createCode({ email: req.body.email, code: verificationCode });
   // Send verification code to user's email
-  await emailService.sendVerificationEmail(req.body.email, verificationCode);
+  // await emailService.sendVerificationEmail(req.body.email, verificationCode);
   res.send({ user });
 });
 
