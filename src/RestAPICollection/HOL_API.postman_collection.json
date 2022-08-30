@@ -16,7 +16,7 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "super",
+							"value": "111",
 							"type": "text"
 						},
 						{
@@ -26,17 +26,19 @@
 						},
 						{
 							"key": "email",
-							"value": "super@gmail.com",
+							"value": "grishasatrian9@gmail.com",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/v1/auth/register",
+					"raw": "141.136.36.44/v1/auth/register",
 					"host": [
-						"localhost"
+						"141",
+						"136",
+						"36",
+						"44"
 					],
-					"port": "3000",
 					"path": [
 						"v1",
 						"auth",
@@ -56,22 +58,24 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "super@gmail.com",
+							"value": "grishasatrian9@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "code",
-							"value": "787914",
+							"value": "364529",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/v1/auth/verify-email",
+					"raw": "141.136.36.44/v1/auth/verify-email",
 					"host": [
-						"localhost"
+						"141",
+						"136",
+						"36",
+						"44"
 					],
-					"port": "3000",
 					"path": [
 						"v1",
 						"auth",
@@ -91,22 +95,24 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "super@gmail.com",
+							"value": "grishasatrian9@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "specialsuper1",
+							"value": "!@#456QWErty",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/v1/auth/login",
+					"raw": "141.136.36.44/v1/auth/login",
 					"host": [
-						"localhost"
+						"141",
+						"136",
+						"36",
+						"44"
 					],
-					"port": "3000",
 					"path": [
 						"v1",
 						"auth",
@@ -126,17 +132,19 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "super@gmail.com",
+							"value": "grishasatrian9@gmail.com",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/v1/auth/forgot-password",
+					"raw": "141.136.36.44/v1/auth/forgot-password",
 					"host": [
-						"localhost"
+						"141",
+						"136",
+						"36",
+						"44"
 					],
-					"port": "3000",
 					"path": [
 						"v1",
 						"auth",
@@ -156,12 +164,12 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "super@gmail.com",
+							"value": "grishasatrian9@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "code",
-							"value": "898495",
+							"value": "464387",
 							"type": "text"
 						},
 						{
@@ -172,11 +180,13 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/v1/auth/reset-password",
+					"raw": "141.136.36.44/v1/auth/reset-password",
 					"host": [
-						"localhost"
+						"141",
+						"136",
+						"36",
+						"44"
 					],
-					"port": "3000",
 					"path": [
 						"v1",
 						"auth",
@@ -203,17 +213,19 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "super@gmail.com",
+							"value": "grishasatrian9@gmail.com",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/v1/auth/resend-code",
+					"raw": "141.136.36.44/v1/auth/resend-code",
 					"host": [
-						"localhost"
+						"141",
+						"136",
+						"36",
+						"44"
 					],
-					"port": "3000",
 					"path": [
 						"v1",
 						"auth",
