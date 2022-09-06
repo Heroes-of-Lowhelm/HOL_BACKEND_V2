@@ -25,7 +25,6 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
       trim: true,
       minlength: 8,
       validate(value) {
@@ -41,6 +40,10 @@ const userSchema = mongoose.Schema(
       default: 'user',
     },
     isEmailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    isGoogle: {
       type: Boolean,
       default: false,
     },

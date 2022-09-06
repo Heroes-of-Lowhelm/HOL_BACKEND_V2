@@ -12,6 +12,11 @@ const register = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send({ user });
 });
 
+const googleRegister = catchAsync(async (req, res) => {
+  const user = await userService.createGoogleUser(req.body);
+  res.status(httpStatus.CREATED).send({ user });
+});
+
 const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
   const user = await authService.loginUserWithEmailAndPassword(email, password);
@@ -20,6 +25,17 @@ const login = catchAsync(async (req, res) => {
   // await codeService.createCode({ email: req.body.email, code: verificationCode });
   // Send verification code to user's email
   // await emailService.sendVerificationEmail(req.body.email, verificationCode);
+  res.send({ user });
+});
+
+const googleLogin = catchAsync(async (req, res) => {
+  const { email, name } = req.body;
+  const user = await authService.loginUserWithGoogle(email, name);
+
+  const verificationCode = Math.floor(100000 + Math.random() * 900000);
+  await codeService.createCode({ email: req.body.email, code: verificationCode });
+  // Send verification code to user's email
+  await emailService.sendVerificationEmail(req.body.email, verificationCode);
   res.send({ user });
 });
 
@@ -65,6 +81,7 @@ const verifyEmail = catchAsync(async (req, res) => {
 
 module.exports = {
   register,
+  googleRegister,
   login,
   logout,
   refreshTokens,
@@ -73,4 +90,5 @@ module.exports = {
   sendVerificationEmail,
   verifyEmail,
   sendVerificationCode,
+  googleLogin,
 };

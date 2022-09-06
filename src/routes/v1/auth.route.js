@@ -7,9 +7,11 @@ const authController = require('../../controllers/auth.controller');
 const router = express.Router();
 
 router.post('/register', validate(authValidation.register), authController.register);
+router.post('/google-register', validate(authValidation.googleRegister), authController.googleRegister);
+
 router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail);
 router.post('/login', validate(authValidation.login), authController.login);
-// router.post('/logout', validate(authValidation.logout), authController.logout);
+router.post('/google-login', validate(authValidation.googleLogin), authController.googleLogin);
 
 router.post('/forgot-password', validate(authValidation.forgotPassword), authController.forgotPassword);
 router.post('/reset-password', validate(authValidation.resetPassword), authController.resetPassword);

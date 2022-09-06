@@ -21,6 +21,14 @@ const loginUserWithEmailAndPassword = async (email, password) => {
   return user;
 };
 
+const loginUserWithGoogle = async (email, name) => {
+  const user = await userService.getUserByEmail(email);
+  if (!user || user.name !== name || !user.isGoogle) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect user information');
+  }
+  return user;
+};
+
 /**
  * Logout
  * @param {string} refreshToken
@@ -98,4 +106,5 @@ module.exports = {
   refreshAuth,
   resetPassword,
   verifyEmail,
+  loginUserWithGoogle,
 };
