@@ -49,6 +49,43 @@
 			"response": []
 		},
 		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Ellena Barasova",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ellenabarasova@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "141.136.36.44/v1/auth/google-register",
+					"host": [
+						"141",
+						"136",
+						"36",
+						"44"
+					],
+					"path": [
+						"v1",
+						"auth",
+						"google-register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "verify-email",
 			"request": {
 				"method": "POST",
@@ -63,7 +100,7 @@
 						},
 						{
 							"key": "code",
-							"value": "364529",
+							"value": "735919",
 							"type": "text"
 						}
 					]
@@ -117,6 +154,43 @@
 						"v1",
 						"auth",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "google-login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ellenabarasova@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Ellena Barasova",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "141.136.36.44/v1/auth/google-login",
+					"host": [
+						"141",
+						"136",
+						"36",
+						"44"
+					],
+					"path": [
+						"v1",
+						"auth",
+						"google-login"
 					]
 				}
 			},
@@ -230,6 +304,46 @@
 						"v1",
 						"auth",
 						"resend-code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APIKEY",
+						"value": "e5a281b8e15fbbccaf22c963f7cd35e8b0accab0995cd6deebeb0de287e0b574",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.viewblock.io/v1/zilliqa/addresses/EBFce5a8eAc1e9203cc439c764Fd27774F61543B/txs?page=2&network=testnet",
+					"protocol": "https",
+					"host": [
+						"api",
+						"viewblock",
+						"io"
+					],
+					"path": [
+						"v1",
+						"zilliqa",
+						"addresses",
+						"EBFce5a8eAc1e9203cc439c764Fd27774F61543B",
+						"txs"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "network",
+							"value": "testnet"
+						}
 					]
 				}
 			},
