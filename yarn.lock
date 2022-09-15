@@ -1015,10 +1015,10 @@
     long "^4.0.0"
     tslib "2.3.1"
 
-"@zilliqa-js/viewblock@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@zilliqa-js/viewblock/-/viewblock-0.0.4.tgz#913b9d74d1f9e5bb26bbc590a3da66582a9311bf"
-  integrity sha512-Yqsxxj6I0aMJTfa7MkFHFMXysv63+F/IdWX+nd9cksP2/6JLJZJZuUadjmkuBvYcEiyrvRbOP+MIBgRV4MXL5A==
+"@zilliqa-js/viewblock@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@zilliqa-js/viewblock/-/viewblock-0.0.5.tgz#a365d36aacf1b192a99d1c0fd02ce7e2d311c8b2"
+  integrity sha512-/TayJM8t4/btyjOwsg4ZabXiQOmLcd9nNA12Guxq/DVvTR5xww+KLlUtNdoEHHjRgQA/MC2wid3RDVjWIZwAww==
   dependencies:
     "@zilliqa-js/crypto" "^3.3.4"
     node-fetch "^3.2.3"

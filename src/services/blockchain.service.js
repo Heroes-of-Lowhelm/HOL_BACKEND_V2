@@ -1,17 +1,20 @@
-import Zilliqa from '@zilliqa-js/viewblock';
-
-const logger = require('../config/logger');
-
-const client = Zilliqa({
-  apiKey: process.env.VIEWBLOCK_API_KEY,
-});
-
 /**
  * Listen Game Contract's address transactions
  */
-const ListenEvent = () => {
-  logger.info('Listening event');
-  client.subscribe({ event: 'addressTx', param: 'zil1gqww6yq9d9nefhg3rec989kxsqs4zm8dzeyr0q' }, logger.info);
+const ListenEvent = async () => {
+  const { default: Zilliqa } = await import('@zilliqa-js/viewblock');
+  const client = Zilliqa({
+    apiKey: process.env.VIEWBLOCK_API_KEY,
+  });
+  const res = await client.getAddressTxs(
+    process.env.GAME_CONTRACT_ADDR,
+    {
+      page: 1,
+      network: 'testnet'
+    }
+  );
+  // logger.info(res);
+  console.log(res);
 };
 
 module.exports = {
