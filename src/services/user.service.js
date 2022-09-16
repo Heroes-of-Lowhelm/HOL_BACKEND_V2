@@ -53,6 +53,10 @@ const getUserByEmail = async (email) => {
   return User.findOne({ email });
 };
 
+const getUserByZilWallet = async (address) => {
+  return User.findOne({ zil: address });
+};
+
 /**
  * Update user by id
  * @param {ObjectId} userId
@@ -94,4 +98,5 @@ module.exports = {
   updateUserById,
   deleteUserById,
   createGoogleUser,
+  getUserByZilWallet,
 };

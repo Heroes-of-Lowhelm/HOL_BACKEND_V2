@@ -55,6 +55,14 @@ const userSchema = mongoose.Schema(
       type: String,
       default: '',
     },
+    hol: {
+      type: Number,
+      default: 0,
+    },
+    cast: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
