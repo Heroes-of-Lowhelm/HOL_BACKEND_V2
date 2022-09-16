@@ -310,6 +310,48 @@
 			"response": []
 		},
 		{
+			"name": "connect-wallet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "super@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "zil",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "zil1a07wt282c85jq0xy88rkflf8wa8kz4pmqpf2v8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "141.136.36.44/v1/users/connect-wallet",
+					"host": [
+						"141",
+						"136",
+						"36",
+						"44"
+					],
+					"path": [
+						"v1",
+						"users",
+						"connect-wallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "New Request",
 			"request": {
 				"method": "GET",
