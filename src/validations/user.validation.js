@@ -45,10 +45,19 @@ const deleteUser = {
   }),
 };
 
+const connectWallet = {
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
+    type: Joi.string().required().valid('zil', 'evm'),
+    address: Joi.string().required(),
+  }),
+};
+
 module.exports = {
   createUser,
   getUsers,
   getUser,
   updateUser,
   deleteUser,
+  connectWallet,
 };

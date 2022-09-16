@@ -34,10 +34,21 @@ const deleteUser = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const connectWallet = catchAsync(async (req, res) => {
+  const user = await userService.getUserByEmail(req.body.email);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  const { type, address } = req.body;
+  const updatedUser = await userService.updateUserById(user.id, { ...user, [type]: address });
+  res.send(updatedUser);
+});
+
 module.exports = {
   createUser,
   getUsers,
   getUser,
   updateUser,
   deleteUser,
+  connectWallet,
 };

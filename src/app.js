@@ -6,6 +6,8 @@ const compression = require('compression');
 const cors = require('cors');
 const passport = require('passport');
 const httpStatus = require('http-status');
+const cron = require('node-cron');
+
 const config = require('./config/config');
 const morgan = require('./config/morgan');
 const { jwtStrategy } = require('./config/passport');
@@ -55,7 +57,12 @@ if (config.env === 'production') {
 app.use('/v1', routes);
 
 // Listen game contract address
-ListenEvent();
+cron.schedule('* * * * *', async () => {
+  // eslint-disable-next-line no-console
+  console.log('running a task every minute');
+  await ListenEvent();
+});
+
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
   next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));

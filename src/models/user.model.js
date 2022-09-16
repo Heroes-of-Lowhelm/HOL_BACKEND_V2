@@ -47,6 +47,14 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    zil: {
+      type: String,
+      default: '',
+    },
+    evm: {
+      type: String,
+      default: '',
+    },
   },
   {
     timestamps: true,
