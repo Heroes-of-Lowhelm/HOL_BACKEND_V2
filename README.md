@@ -1,3 +1,26 @@
+# Useful Information for Heroes Summoning
+unique_id (since this is unique for each heroes)
+item_name (since hero name cannot be changed)
+user_id (since player owned by that hero is only one and cannot be changed)
+star_grade
+regular_lv
+passive_lv
+skill1_lv
+skill2_lv
+is_chaotic
+
+
+
+
+
+Originally, what we plan for the parameters of saving heroes are
+
+sub_level
+exp
+attack_value
+hp_value
+speed_value
+resistance_value
 # RESTful API Node Server Boilerplate
 
 [![Build Status](https://travis-ci.org/hagopj13/node-express-boilerplate.svg?branch=master)](https://travis-ci.org/hagopj13/node-express-boilerplate)

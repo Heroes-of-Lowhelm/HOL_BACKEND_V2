@@ -1,92 +1,101 @@
-const { userService } = require('./index');
-const { User } = require('../models');
-const { Transaction } = require('../models');
+const axios = require('axios');
+const httpStatus = require('http-status');
+const { Zilliqa } = require('@zilliqa-js/zilliqa');
+const { bytes, units, BN, Long } = require('@zilliqa-js/util');
+const ApiError = require('../utils/ApiError');
 
-const createTransactionHistory = async (transaction) => {
-  return Transaction.create(transaction);
-};
+const zilliqa = new Zilliqa('https://dev-api.zilliqa.com');
+const chainId = 333; // chainId of the developer testnet
+const msgVersion = 1; // current msgVersion
+const VERSION = bytes.pack(chainId, msgVersion);
+const myGasPrice = units.toQa('2000', units.Units.Li); // Gas Price that will be used by all transactions
+const privateKey = process.env.ADMIN_WALLET_PRIVATEKEY;
+zilliqa.wallet.addByPrivateKey(privateKey);
 
-/**
- * Get last record
- * @returns {Promise<User>}
- */
-const getLatestTransactionHistory = async () => {
-  return Transaction.find().limit(1).sort({"_id": -1});
-};
-/**
- * Listen Game Contract's address transactions
- */
-const ListenEvent = async () => {
-  const { default: Zilliqa } = await import('@zilliqa-js/viewblock');
-  const client = Zilliqa({
-    apiKey: process.env.VIEWBLOCK_API_KEY,
+const generateMetadataJson = (heroParam) => {
+  // eslint-disable-next-line camelcase
+  const { id, item_name, star_grade, regular_lv, passive_lv, skill1_lv, skill2_lv, is_chaotic } = heroParam;
+  const data = JSON.stringify({
+    pinataMetadata: {
+      name: `heroes-${id}.metadata.json`,
+    },
+    pinataContent: {
+      description: `Heroes NFT #${id}`,
+      // eslint-disable-next-line camelcase
+      name: `${item_name}`,
+      // eslint-disable-next-line camelcase
+      image: `ipfs://${process.env.HEROES_ASSET_CID}/${item_name}.png`,
+      'Current Star Grade Level': star_grade,
+      'Regular Level': regular_lv,
+      'Passive Level': passive_lv,
+      'Skill One Level': skill1_lv,
+      'Skill Two Level': skill2_lv,
+      'Is Chaotic': is_chaotic,
+    },
   });
+  return data;
+};
 
-  const getCurrentTransction = async (page) => {
-    return await client.getAddressTokenTxs(
-      process.env.GAME_CONTRACT_ADDR,
+const getConfig = (data) => {
+  return {
+    method: 'post',
+    url: 'https://api.pinata.cloud/pinning/pinJSONToIPFS',
+    headers: {
+      pinata_api_key: `${process.env.PINATA_API_KEY}`,
+      pinata_secret_api_key: `${process.env.PINATA_SECURITY_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    data,
+  };
+};
+
+const mintHeroTx = async (heroParam) => {
+  const data = generateMetadataJson(heroParam);
+  const config = getConfig(data);
+  let result;
+  try {
+    result = await axios(config);
+  } catch (e) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
+  }
+  if (!result) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Pinata Error: Error while uploading metadata');
+  }
+  const tokenUri = result.data['IpfsHash'];
+  const heroesNFTContract = zilliqa.contracts.at(process.env.HEROES_NFT_ADDRESS);
+  const to = process.env.GAME_CONTRACT_ADDR;
+  try {
+    const callTx = await heroesNFTContract.callWithoutConfirm(
+      'Mint',
+      [
+        {
+          vname: 'to',
+          type: 'ByStr20',
+          value: to,
+        },
+        {
+          vname: 'token_uri',
+          type: 'String',
+          value: tokenUri,
+        },
+      ],
       {
-        page: page,
-        network: 'testnet'
-      }
+        // amount, gasPrice and gasLimit must be explicitly provided
+        version: VERSION,
+        amount: new BN(0),
+        gasPrice: myGasPrice,
+        gasLimit: Long.fromNumber(8000),
+      },
+      false
     );
+    console.log("transaction id======>", callTx.id);
+    const confirmedTxn = await callTx.confirm(callTx.id);
+    return confirmedTxn;
+  } catch (e) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
   }
-  // Get the latest transaction history
-  const transaction = await getLatestTransactionHistory();
-  console.log("latest transaction history==========>", transaction);
-  let page = 1;
-  let blockTimeStamp = 0;
-  if (transaction[0]) {
-    page = transaction[0].page;
-    blockTimeStamp = transaction[0].blockTime;
-  }
-  const res = await getCurrentTransction(page);
-  let currentTotalPages = res.totalPages;
-  let documents = res.docs;
-  let currentTotalNumbers = res.total;
-  while (currentTotalPages > page) {
-    page ++;
-    let result = await getCurrentTransction(page);
-    documents = documents.concat(result.docs);
-  }
-
-  // Get newly generated transactions
-  let newTransactions = documents.filter((item) => {
-    return  item.timestamp > blockTimeStamp;
-  })
-
-  let latestTimeStamp = blockTimeStamp;
-  for (let item of newTransactions) {
-    let { from, value, tokenAddress, direction, timestamp} = item;
-    if (latestTimeStamp < timestamp) {
-      latestTimeStamp = timestamp;
-    }
-    if (direction === 'in') {
-      value = parseFloat(value) * 10000000000000;
-      const user = await userService.getUserByZilWallet(from);
-      if (user) {
-        if (tokenAddress === process.env.HOL_TOKEN_ADDR) {
-          let holBalance = user.hol + value;
-          console.log("hol balance==============>", user.hol, value, holBalance);
-          await userService.updateUserById(user.id, {...user, hol: holBalance})
-        } else if (tokenAddress === process.env.CAST_TOKEN_ADDR) {
-          let castBalance = user.cast + value;
-          await userService.updateUserById(user.id, {...user, cast: castBalance})
-        }
-      }
-    }
-  }
-
-
-  // Write transaction history to database
-  await createTransactionHistory({
-    page: currentTotalPages,
-    totalNumber:currentTotalNumbers,
-    blockTime: latestTimeStamp,
-  })
-  // console.log(newTransactions);
 };
 
 module.exports = {
-  ListenEvent,
+  mintHeroTx,
 };
