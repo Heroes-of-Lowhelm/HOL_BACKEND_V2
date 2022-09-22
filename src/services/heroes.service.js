@@ -19,7 +19,17 @@ const getHeroById = async (id) => {
  */
 // eslint-disable-next-line camelcase
 const getHeroesByUserId = async (user_id) => {
-  return Heroes.find(user_id);
+  return Heroes.find({ user_id });
+};
+
+/**
+ * Get heroes by unique_id
+ * @param {ObjectId} unique_id
+ * @returns {Promise<Heroes>}
+ */
+// eslint-disable-next-line camelcase
+const getHeroesByUniqueId = async (unique_id) => {
+  return Heroes.findOne({ unique_id });
 };
 
 /**
@@ -50,4 +60,5 @@ module.exports = {
   createHero,
   mintHero,
   getHeroesByUserId,
+  getHeroesByUniqueId,
 };

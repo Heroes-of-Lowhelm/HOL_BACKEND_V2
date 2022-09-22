@@ -1,9 +1,8 @@
 const httpStatus = require('http-status');
-// const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { heroesService, userService } = require('../services');
-const { Heroes } = require("../models");
+const { Heroes } = require('../models');
 
 const createHero = catchAsync(async (req, res) => {
   const hero = await heroesService.createHero(req.body);
@@ -11,20 +10,18 @@ const createHero = catchAsync(async (req, res) => {
 });
 
 const getHeroes = catchAsync(async (req, res) => {
-  // eslint-disable-next-line camelcase
-  const { user_id } = req.params;
-  const result = await heroesService.getHeroesByUserId(user_id);
+  const result = await heroesService.getHeroesByUserId(req.query.user_id);
   res.send(result);
 });
-//
-// const getHero = catchAsync(async (req, res) => {
-//   const user = await userService.getUserById(req.params.userId);
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-//   }
-//   res.send(user);
-// });
-//
+
+const getHero = catchAsync(async (req, res) => {
+  const hero = await heroesService.getHeroesByUniqueId(req.query.unique_id);
+  if (!hero) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Hero not found');
+  }
+  res.send(hero);
+});
+
 // const updateHero = catchAsync(async (req, res) => {
 //   const user = await userService.updateUserById(req.params.userId, req.body);
 //   res.send(user);
@@ -51,7 +48,7 @@ const mintHero = catchAsync(async (req, res) => {
 module.exports = {
   createHero,
   getHeroes,
-  // getHero,
+  getHero,
   // updateHero,
   // deleteHero,
   mintHero,

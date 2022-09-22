@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/mint-hero', validate(heroValidation.mintHero), heroController.mintHero);
 router.get('/get-heroes', validate(heroValidation.getHeroes), heroController.getHeroes);
+router.get('/get-one', validate(heroValidation.getHero), heroController.getHero);
 
 module.exports = router;
 

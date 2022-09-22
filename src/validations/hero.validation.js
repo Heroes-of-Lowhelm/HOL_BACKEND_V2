@@ -9,7 +9,7 @@ const getHeroes = {
 
 const getHero = {
   query: Joi.object().keys({
-    unique_id: Joi.string().custom(objectId),
+    unique_id: Joi.string().required(),
   }),
 };
 
