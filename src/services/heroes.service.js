@@ -13,6 +13,16 @@ const getHeroById = async (id) => {
 };
 
 /**
+ * Get heroes by user_id
+ * @param {ObjectId} user_id
+ * @returns {Promise<Heroes>}
+ */
+// eslint-disable-next-line camelcase
+const getHeroesByUserId = async (user_id) => {
+  return Heroes.find(user_id);
+};
+
+/**
  * Create Hero
  * @param {heroParam} id
  * @returns {Promise<Heroes>}
@@ -29,7 +39,6 @@ const mintHero = async (heroParam) => {
   if (!result) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Zilliqa Error: Error while minting Heroes');
   }
-  console.log(result);
   if (result.receipt.success !== true) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Transaction Error while minting Heroes');
   }
@@ -40,4 +49,5 @@ module.exports = {
   getHeroById,
   createHero,
   mintHero,
+  getHeroesByUserId,
 };

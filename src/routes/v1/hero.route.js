@@ -1,11 +1,12 @@
 const express = require('express');
 const validate = require('../../middlewares/validate');
-const userValidation = require('../../validations/user.validation');
-const userController = require('../../controllers/user.controller');
+const heroValidation = require('../../validations/hero.validation');
+const heroController = require('../../controllers/hero.controller');
 
 const router = express.Router();
 
-router.post('/connect-wallet', validate(userValidation.connectWallet), userController.connectWallet);
+router.post('/mint-hero', validate(heroValidation.mintHero), heroController.mintHero);
+router.get('/get-heroes', validate(heroValidation.getHeroes), heroController.getHeroes);
 
 module.exports = router;
 

@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { userService, heroesService } = require('../services');
+const { userService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -44,16 +44,6 @@ const connectWallet = catchAsync(async (req, res) => {
   res.send(updatedUser);
 });
 
-const mintHero = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.body.user_id);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-  }
-  await heroesService.mintHero(req.body);
-  const hero = await heroesService.createHero(req.body);
-  res.status(httpStatus.CREATED).send(hero);
-});
-
 module.exports = {
   createUser,
   getUsers,
@@ -61,5 +51,4 @@ module.exports = {
   updateUser,
   deleteUser,
   connectWallet,
-  mintHero,
 };

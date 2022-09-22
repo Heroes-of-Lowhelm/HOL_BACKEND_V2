@@ -53,26 +53,6 @@ const connectWallet = {
   }),
 };
 
-const mintHero = {
-  body: Joi.object().keys({
-    user_id: Joi.string().required(),
-    unique_id: Joi.string().required(),
-    item_name: Joi.string().required(),
-    star_grade: Joi.number().required(),
-    regular_lv: Joi.number().required(),
-    passive_lv: Joi.number().required(),
-    skill1_lv: Joi.number().required(),
-    skill2_lv: Joi.number().required(),
-    is_chaotic: Joi.boolean().required(),
-    sub_level: Joi.number().required(),
-    exp: Joi.number().required(),
-    attack_value: Joi.number().required(),
-    hp_value: Joi.number().required(),
-    speed_value: Joi.number().required(),
-    resistance_value: Joi.number().required(),
-  }),
-};
-
 module.exports = {
   createUser,
   getUsers,
@@ -80,5 +60,4 @@ module.exports = {
   updateUser,
   deleteUser,
   connectWallet,
-  mintHero,
 };
