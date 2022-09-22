@@ -49,7 +49,7 @@
 			"response": []
 		},
 		{
-			"name": "register",
+			"name": "google-register",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -346,6 +346,108 @@
 						"v1",
 						"users",
 						"connect-wallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mint-hero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_id",
+							"value": "632c2449a9aba17e93ec78b3",
+							"type": "text"
+						},
+						{
+							"key": "unique_id",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "item_name",
+							"value": "Calix",
+							"type": "text"
+						},
+						{
+							"key": "star_grade",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "regular_lv",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "passive_lv",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "skill1_lv",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "skill2_lv",
+							"value": "7",
+							"type": "text"
+						},
+						{
+							"key": "is_chaotic",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "sub_level",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "exp",
+							"value": "33",
+							"type": "text"
+						},
+						{
+							"key": "attack_value",
+							"value": "120",
+							"type": "text"
+						},
+						{
+							"key": "hp_value",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "speed_value",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "resistance_value",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "141.136.36.44/v1/users/mint-hero",
+					"host": [
+						"141",
+						"136",
+						"36",
+						"44"
+					],
+					"path": [
+						"v1",
+						"users",
+						"mint-hero"
 					]
 				}
 			},
