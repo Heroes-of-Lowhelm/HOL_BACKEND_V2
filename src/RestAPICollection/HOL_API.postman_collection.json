@@ -319,7 +319,7 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "super@gmail.com",
+							"value": "grishasatrian9@gmail.com",
 							"type": "text"
 						},
 						{
@@ -361,12 +361,12 @@
 					"urlencoded": [
 						{
 							"key": "user_id",
-							"value": "632c2449a9aba17e93ec78b3",
+							"value": "6308b78a518d963554a263ee",
 							"type": "text"
 						},
 						{
 							"key": "unique_id",
-							"value": "123",
+							"value": "12345",
 							"type": "text"
 						},
 						{
@@ -437,7 +437,7 @@
 					]
 				},
 				"url": {
-					"raw": "141.136.36.44/v1/users/mint-hero",
+					"raw": "141.136.36.44/v1/heroes/mint-hero",
 					"host": [
 						"141",
 						"136",
@@ -446,7 +446,7 @@
 					],
 					"path": [
 						"v1",
-						"users",
+						"heroes",
 						"mint-hero"
 					]
 				}
@@ -454,39 +454,69 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "get-heroes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "X-APIKEY",
-						"value": "e5a281b8e15fbbccaf22c963f7cd35e8b0accab0995cd6deebeb0de287e0b574",
-						"type": "text"
-					}
-				],
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
 				"url": {
-					"raw": "https://api.viewblock.io/v1/zilliqa/addresses/EBFce5a8eAc1e9203cc439c764Fd27774F61543B/txs?page=2&network=testnet",
-					"protocol": "https",
+					"raw": "141.136.36.44/v1/heroes/get-heroes?user_id=6308b78a518d963554a263ee",
 					"host": [
-						"api",
-						"viewblock",
-						"io"
+						"141",
+						"136",
+						"36",
+						"44"
 					],
 					"path": [
 						"v1",
-						"zilliqa",
-						"addresses",
-						"EBFce5a8eAc1e9203cc439c764Fd27774F61543B",
-						"txs"
+						"heroes",
+						"get-heroes"
 					],
 					"query": [
 						{
-							"key": "page",
-							"value": "2"
-						},
+							"key": "user_id",
+							"value": "6308b78a518d963554a263ee"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-one",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "141.136.36.44/v1/heroes/get-one?unique_id=12345",
+					"host": [
+						"141",
+						"136",
+						"36",
+						"44"
+					],
+					"path": [
+						"v1",
+						"heroes",
+						"get-one"
+					],
+					"query": [
 						{
-							"key": "network",
-							"value": "testnet"
+							"key": "unique_id",
+							"value": "12345"
 						}
 					]
 				}
