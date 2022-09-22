@@ -49,8 +49,8 @@ const mintHero = catchAsync(async (req, res) => {
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
+  await heroesService.mintHero(req.body);
   const hero = await heroesService.createHero(req.body);
-  await heroesService.mintHero({ ...req.body, id: hero.id });
   res.status(httpStatus.CREATED).send(hero);
 });
 

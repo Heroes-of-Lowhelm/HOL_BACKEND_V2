@@ -18,6 +18,9 @@ const getHeroById = async (id) => {
  * @returns {Promise<Heroes>}
  */
 const createHero = async (heroParam) => {
+  if (await Heroes.isHeroIdTaken(heroParam.unique_id)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Hero unique_id is already taken');
+  }
   return Heroes.create(heroParam);
 };
 

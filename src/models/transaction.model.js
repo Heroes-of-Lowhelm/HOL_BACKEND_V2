@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { toJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const transactionSchema = mongoose.Schema(
   {
@@ -24,6 +24,7 @@ const transactionSchema = mongoose.Schema(
 
 // add plugin that converts mongoose to json
 transactionSchema.plugin(toJSON);
+transactionSchema.plugin(paginate);
 
 /**
  * @typedef Transaction

@@ -14,13 +14,15 @@ zilliqa.wallet.addByPrivateKey(privateKey);
 
 const generateMetadataJson = (heroParam) => {
   // eslint-disable-next-line camelcase
-  const { id, item_name, star_grade, regular_lv, passive_lv, skill1_lv, skill2_lv, is_chaotic } = heroParam;
+  const { unique_id, item_name, star_grade, regular_lv, passive_lv, skill1_lv, skill2_lv, is_chaotic } = heroParam;
   const data = JSON.stringify({
     pinataMetadata: {
-      name: `heroes-${id}.metadata.json`,
+      // eslint-disable-next-line camelcase
+      name: `heroes-${unique_id}.metadata.json`,
     },
     pinataContent: {
-      description: `Heroes NFT #${id}`,
+      // eslint-disable-next-line camelcase
+      description: `Heroes NFT #${unique_id}`,
       // eslint-disable-next-line camelcase
       name: `${item_name}`,
       // eslint-disable-next-line camelcase
@@ -63,7 +65,7 @@ const mintHeroTx = async (heroParam) => {
   }
   const tokenUri = result.data['IpfsHash'];
   const heroesNFTContract = zilliqa.contracts.at(process.env.HEROES_NFT_ADDRESS);
-  const to = process.env.GAME_CONTRACT_ADDR;
+  const to = process.env.GAME_CONTRACT_ADDR_BYSTR20;
   try {
     const callTx = await heroesNFTContract.callWithoutConfirm(
       'Mint',

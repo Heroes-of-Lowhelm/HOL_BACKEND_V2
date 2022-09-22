@@ -56,6 +56,7 @@ const connectWallet = {
 const mintHero = {
   body: Joi.object().keys({
     user_id: Joi.string().required(),
+    unique_id: Joi.string().required(),
     item_name: Joi.string().required(),
     star_grade: Joi.number().required(),
     regular_lv: Joi.number().required(),
