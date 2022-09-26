@@ -46,7 +46,6 @@ const createGear = async (gearParam) => {
 
 const mintGear = async (gearParam) => {
   const result = await mintGearTx(gearParam);
-  console.log("transaction result=============>", result);
   if (!result) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Zilliqa Error: Error while minting Heroes');
   }

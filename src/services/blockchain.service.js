@@ -163,7 +163,6 @@ const mintHeroTx = async (heroParam) => {
 
 const mintGearTx = async (gearParam) => {
   const data = generateGearMetadataJson(gearParam);
-  console.log("data===========>", data);
   const config = getConfig(data);
   let result;
   try {
