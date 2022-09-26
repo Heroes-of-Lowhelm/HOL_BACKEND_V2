@@ -6,6 +6,7 @@ const userController = require('../../controllers/user.controller');
 const router = express.Router();
 
 router.post('/connect-wallet', validate(userValidation.connectWallet), userController.connectWallet);
+router.get('/get-all', userController.getAll);
 
 module.exports = router;
 

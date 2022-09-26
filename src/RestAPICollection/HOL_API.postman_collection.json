@@ -7,521 +7,705 @@
 	},
 	"item": [
 		{
-			"name": "register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "111",
-							"type": "text"
+			"name": "Gear",
+			"item": [
+				{
+					"name": "get-one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
 						},
-						{
-							"key": "password",
-							"value": "specialsuper1",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "grishasatrian9@gmail.com",
-							"type": "text"
+						"url": {
+							"raw": "141.136.36.44/v1/gears/get-one?unique_id=12",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"gears",
+								"get-one"
+							],
+							"query": [
+								{
+									"key": "unique_id",
+									"value": "12"
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/register",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"register"
-					]
+				{
+					"name": "get-gears",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/gears/get-gears?user_id=6308b78a518d963554a263ee",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"gears",
+								"get-gears"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "6308b78a518d963554a263ee"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mint-gear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "6308b78a518d963554a263ee",
+									"type": "text"
+								},
+								{
+									"key": "unique_id",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "item_name",
+									"value": "Helmet",
+									"type": "text"
+								},
+								{
+									"key": "star_grade",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "main_stat",
+									"value": "Attack +25.34",
+									"description": "Format::: StatType +number\n(if % then StatType% + number) \nFor example: HP% + 2",
+									"type": "text"
+								},
+								{
+									"key": "sub_stat1",
+									"value": "HP% +5",
+									"description": "optional, format is same as main_stat",
+									"type": "text"
+								},
+								{
+									"key": "sub_stat2",
+									"value": "Armor% +4",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "sub_stat3",
+									"value": "Attack +3.12",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "sub_stat4",
+									"value": "HP +32.43",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "sub_stat5",
+									"value": "Speed +45.67",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "set",
+									"value": "Life",
+									"description": "optional: {'Life', 'Harden', 'Strength', 'Degen', 'Effectiveness', 'Explosion', 'Vampire'}",
+									"type": "text"
+								},
+								{
+									"key": "is_chaotic",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/gears/mint-gear",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"gears",
+								"mint-gear"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "google-register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Ellena Barasova",
-							"type": "text"
+			"name": "Hero",
+			"item": [
+				{
+					"name": "mint-hero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "6308b78a518d963554a263ee",
+									"type": "text"
+								},
+								{
+									"key": "unique_id",
+									"value": "12345",
+									"type": "text"
+								},
+								{
+									"key": "item_name",
+									"value": "Calix",
+									"type": "text"
+								},
+								{
+									"key": "star_grade",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "regular_lv",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "passive_lv",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "skill1_lv",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "skill2_lv",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "is_chaotic",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "sub_level",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "exp",
+									"value": "33",
+									"type": "text"
+								},
+								{
+									"key": "attack_value",
+									"value": "120",
+									"type": "text"
+								},
+								{
+									"key": "hp_value",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "speed_value",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "resistance_value",
+									"value": "4",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "email",
-							"value": "ellenabarasova@gmail.com",
-							"type": "text"
+						"url": {
+							"raw": "141.136.36.44/v1/heroes/mint-hero",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"heroes",
+								"mint-hero"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/google-register",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"google-register"
-					]
+				{
+					"name": "get-heroes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/heroes/get-heroes?user_id=6308b78a518d963554a263ee",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"heroes",
+								"get-heroes"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "6308b78a518d963554a263ee"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/heroes/get-one?unique_id=12345",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"heroes",
+								"get-one"
+							],
+							"query": [
+								{
+									"key": "unique_id",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "verify-email",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "grishasatrian9@gmail.com",
-							"type": "text"
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "111",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "specialsuper1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "code",
-							"value": "735919",
-							"type": "text"
+						"url": {
+							"raw": "141.136.36.44/v1/auth/register",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/verify-email",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"verify-email"
-					]
+				{
+					"name": "google-register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Ellena Barasova",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ellenabarasova@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/auth/google-register",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google-register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify-email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "735919",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/auth/verify-email",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "google-login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ellenabarasova@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Ellena Barasova",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/auth/google-login",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "!@#456QWErty",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/auth/login",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/auth/forgot-password",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "464387",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "!@#456QWErty",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/auth/reset-password",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "986724",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend-code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/auth/resend-code",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"resend-code"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "grishasatrian9@gmail.com",
-							"type": "text"
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "connect-wallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "zil",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "zil1a07wt282c85jq0xy88rkflf8wa8kz4pmqpf2v8",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "password",
-							"value": "!@#456QWErty",
-							"type": "text"
+						"url": {
+							"raw": "141.136.36.44/v1/users/connect-wallet",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"users",
+								"connect-wallet"
+							]
 						}
-					]
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/login",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"login"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "google-login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "ellenabarasova@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "Ellena Barasova",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/google-login",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"google-login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "forgot-password",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "grishasatrian9@gmail.com",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/forgot-password",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"forgot-password"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "reset-password",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "grishasatrian9@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "code",
-							"value": "464387",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "!@#456QWErty",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/reset-password",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"reset-password"
-					],
-					"query": [
-						{
-							"key": null,
-							"value": "986724",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "resend-code",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "grishasatrian9@gmail.com",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/auth/resend-code",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"auth",
-						"resend-code"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "connect-wallet",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "grishasatrian9@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "type",
-							"value": "zil",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "zil1a07wt282c85jq0xy88rkflf8wa8kz4pmqpf2v8",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/users/connect-wallet",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"users",
-						"connect-wallet"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "mint-hero",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "user_id",
-							"value": "6308b78a518d963554a263ee",
-							"type": "text"
-						},
-						{
-							"key": "unique_id",
-							"value": "12345",
-							"type": "text"
-						},
-						{
-							"key": "item_name",
-							"value": "Calix",
-							"type": "text"
-						},
-						{
-							"key": "star_grade",
-							"value": "3",
-							"type": "text"
-						},
-						{
-							"key": "regular_lv",
-							"value": "4",
-							"type": "text"
-						},
-						{
-							"key": "passive_lv",
-							"value": "5",
-							"type": "text"
-						},
-						{
-							"key": "skill1_lv",
-							"value": "6",
-							"type": "text"
-						},
-						{
-							"key": "skill2_lv",
-							"value": "7",
-							"type": "text"
-						},
-						{
-							"key": "is_chaotic",
-							"value": "true",
-							"type": "text"
-						},
-						{
-							"key": "sub_level",
-							"value": "25",
-							"type": "text"
-						},
-						{
-							"key": "exp",
-							"value": "33",
-							"type": "text"
-						},
-						{
-							"key": "attack_value",
-							"value": "120",
-							"type": "text"
-						},
-						{
-							"key": "hp_value",
-							"value": "25",
-							"type": "text"
-						},
-						{
-							"key": "speed_value",
-							"value": "3",
-							"type": "text"
-						},
-						{
-							"key": "resistance_value",
-							"value": "4",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/heroes/mint-hero",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"heroes",
-						"mint-hero"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get-heroes",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/heroes/get-heroes?user_id=6308b78a518d963554a263ee",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"heroes",
-						"get-heroes"
-					],
-					"query": [
-						{
-							"key": "user_id",
-							"value": "6308b78a518d963554a263ee"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get-one",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "141.136.36.44/v1/heroes/get-one?unique_id=12345",
-					"host": [
-						"141",
-						"136",
-						"36",
-						"44"
-					],
-					"path": [
-						"v1",
-						"heroes",
-						"get-one"
-					],
-					"query": [
-						{
-							"key": "unique_id",
-							"value": "12345"
-						}
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

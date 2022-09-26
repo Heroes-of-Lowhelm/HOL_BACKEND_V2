@@ -44,6 +44,11 @@ const connectWallet = catchAsync(async (req, res) => {
   res.send(updatedUser);
 });
 
+const getAll = catchAsync(async (req, res) => {
+  const users = await userService.getAllUsers();
+  res.send(users);
+});
+
 module.exports = {
   createUser,
   getUsers,
@@ -51,4 +56,5 @@ module.exports = {
   updateUser,
   deleteUser,
   connectWallet,
+  getAll,
 };

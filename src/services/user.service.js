@@ -35,6 +35,11 @@ const queryUsers = async (filter, options) => {
   return users;
 };
 
+const getAllUsers = async () => {
+  const users = await User.find();
+  return users;
+};
+
 /**
  * Get user by id
  * @param {ObjectId} id
@@ -99,4 +104,5 @@ module.exports = {
   deleteUserById,
   createGoogleUser,
   getUserByZilWallet,
+  getAllUsers,
 };
