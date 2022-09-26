@@ -5,4 +5,5 @@ module.exports.userService = require('./user.service');
 module.exports.codeService = require('./code.service');
 module.exports.transactionService = require('./transaction.service');
 module.exports.heroesService = require('./heroes.service');
+module.exports.gearsService = require('./gears.service');
 module.exports.blockchainService = require('./blockchain.service');
