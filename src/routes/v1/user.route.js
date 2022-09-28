@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/connect-wallet', validate(userValidation.connectWallet), userController.connectWallet);
 router.get('/get-all', userController.getAll);
+router.delete('/delete-user', validate(userValidation.deleteUser), userController.deleteUser);
 
 module.exports = router;
 

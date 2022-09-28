@@ -661,7 +661,7 @@
 			]
 		},
 		{
-			"name": "Wallet",
+			"name": "Users",
 			"item": [
 				{
 					"name": "connect-wallet",
@@ -700,6 +700,35 @@
 								"v1",
 								"users",
 								"connect-wallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "141.136.36.44/v1/users/get-all",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"users",
+								"get-all"
 							]
 						}
 					},
