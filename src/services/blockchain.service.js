@@ -40,16 +40,26 @@ const generateHeroMetadataJson = (heroParam) => {
 
 const generateGearMetadataJson = (gearParam) => {
   const {
+    // eslint-disable-next-line camelcase
     unique_id,
+    // eslint-disable-next-line camelcase
     item_name,
+    // eslint-disable-next-line camelcase
     star_grade,
+    // eslint-disable-next-line camelcase
     main_stat,
+    // eslint-disable-next-line camelcase
     sub_stat1,
+    // eslint-disable-next-line camelcase
     sub_stat2,
+    // eslint-disable-next-line camelcase
     sub_stat3,
+    // eslint-disable-next-line camelcase
     sub_stat4,
+    // eslint-disable-next-line camelcase
     sub_stat5,
     set,
+    // eslint-disable-next-line camelcase
     is_chaotic,
   } = gearParam;
   let contentData = {

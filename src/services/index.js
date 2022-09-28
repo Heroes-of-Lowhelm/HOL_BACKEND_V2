@@ -7,3 +7,4 @@ module.exports.transactionService = require('./transaction.service');
 module.exports.heroesService = require('./heroes.service');
 module.exports.gearsService = require('./gears.service');
 module.exports.blockchainService = require('./blockchain.service');
+module.exports.priceService = require('./price.service');

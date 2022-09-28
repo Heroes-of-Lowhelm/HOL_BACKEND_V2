@@ -16,7 +16,7 @@ const getLatestTransactionHistory = async () => {
 /**
  * Listen Game Contract's address transactions
  */
-const ListenEvent = async () => {
+const listenEvent = async () => {
   const { default: Zilliqa } = await import('@zilliqa-js/viewblock');
   const client = Zilliqa({
     apiKey: process.env.VIEWBLOCK_API_KEY,
@@ -88,5 +88,5 @@ const ListenEvent = async () => {
 };
 
 module.exports = {
-  ListenEvent,
+  listenEvent,
 };

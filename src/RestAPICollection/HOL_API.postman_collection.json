@@ -733,6 +733,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "delete-user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "141.136.36.44/v1/users/delete-user?userId=632299e142f0ef0945578a2d",
+							"host": [
+								"141",
+								"136",
+								"36",
+								"44"
+							],
+							"path": [
+								"v1",
+								"users",
+								"delete-user"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "632299e142f0ef0945578a2d"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

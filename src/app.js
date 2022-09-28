@@ -15,7 +15,8 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
-const { ListenEvent } = require('./services/transaction.service');
+const { listenEvent } = require('./services/transaction.service');
+const { fetchPrice } = require('./services/price.service');
 
 const app = express();
 
@@ -60,7 +61,14 @@ app.use('/v1', routes);
 cron.schedule('* * * * *', async () => {
   // eslint-disable-next-line no-console
   console.log('running a task every minute');
-  await ListenEvent();
+  await listenEvent();
+});
+
+// Fetching $HOL TWAP every 30 mins
+cron.schedule('*/3 * * * *', async () => {
+  // eslint-disable-next-line no-console
+  console.log('running a task every 30 minute');
+  await fetchPrice();
 });
 
 // send back a 404 error for any unknown api request
