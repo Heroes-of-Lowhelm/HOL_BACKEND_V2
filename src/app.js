@@ -65,7 +65,7 @@ cron.schedule('* * * * *', async () => {
 });
 
 // Fetching $HOL TWAP every 30 mins
-cron.schedule('*/3 * * * *', async () => {
+cron.schedule('*/30 * * * *', async () => {
   // eslint-disable-next-line no-console
   console.log('running a task every 30 minute');
   await fetchPrice();

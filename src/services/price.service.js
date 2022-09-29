@@ -1,7 +1,7 @@
 const axios = require('axios');
-const { HolPrice } = require('../models');
+const { HolPrice, Transaction } = require('../models');
 
-async function getTWAP() {
+const getTWAP = async () => {
   const config = {
     method: 'get',
     url: 'https://api.zilstream.com/rates/HOL?interval=1m&period=1h&currency=USD',
@@ -21,14 +21,18 @@ async function getTWAP() {
   } catch (e) {
     console.log('error occured from ZilStream===========>', e);
   }
-}
+};
 
 const fetchPrice = async () => {
   const holTWAP = await getTWAP();
-  console.log("hol price============>", holTWAP);
   await HolPrice.create({ holPrice: holTWAP });
+};
+
+const getPrice = async () => {
+  return HolPrice.find().limit(1).sort({ _id: -1 });
 };
 
 module.exports = {
   fetchPrice,
+  getPrice,
 };
