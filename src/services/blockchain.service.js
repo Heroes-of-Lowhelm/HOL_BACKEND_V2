@@ -138,52 +138,6 @@ const mintHeroTx = async (heroParam) => {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Pinata Error: Error while uploading metadata');
   }
   const tokenUri = result.data['IpfsHash'];
-  const gearsNFTContract = zilliqa.contracts.at(process.env.GEARS_NFT_ADDRESS);
-  const to = process.env.GAME_CONTRACT_ADDR_BYSTR20;
-  try {
-    const callTx = await gearsNFTContract.callWithoutConfirm(
-      'Mint',
-      [
-        {
-          vname: 'to',
-          type: 'ByStr20',
-          value: to,
-        },
-        {
-          vname: 'token_uri',
-          type: 'String',
-          value: tokenUri,
-        },
-      ],
-      {
-        // amount, gasPrice and gasLimit must be explicitly provided
-        version: VERSION,
-        amount: new BN(0),
-        gasPrice: myGasPrice,
-        gasLimit: Long.fromNumber(8000),
-      },
-      false
-    );
-    const confirmedTxn = await callTx.confirm(callTx.id);
-    return confirmedTxn;
-  } catch (e) {
-    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
-  }
-};
-
-const mintGearTx = async (gearParam) => {
-  const data = generateGearMetadataJson(gearParam);
-  const config = getConfig(data);
-  let result;
-  try {
-    result = await axios(config);
-  } catch (e) {
-    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
-  }
-  if (!result) {
-    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Pinata Error: Error while uploading metadata');
-  }
-  const tokenUri = result.data['IpfsHash'];
   const heroesNFTContract = zilliqa.contracts.at(process.env.HEROES_NFT_ADDRESS);
   const to = process.env.GAME_CONTRACT_ADDR_BYSTR20;
   try {
@@ -217,7 +171,60 @@ const mintGearTx = async (gearParam) => {
   }
 };
 
+const getHeroTokenIdCount = async () => {
+  const heroTokenIdCount = await zilliqa.blockchain.getSmartContractSubState(process.env.HEROES_NFT_ADDRESS, 'token_id_count');
+  console.log("Here Token Id==============>", heroTokenIdCount);
+  return heroTokenIdCount;
+};
+
+const mintGearTx = async (gearParam) => {
+  const data = generateGearMetadataJson(gearParam);
+  const config = getConfig(data);
+  let result;
+  try {
+    result = await axios(config);
+  } catch (e) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
+  }
+  if (!result) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Pinata Error: Error while uploading metadata');
+  }
+  const tokenUri = result.data['IpfsHash'];
+  const gearsNFTContract = zilliqa.contracts.at(process.env.GEARS_NFT_ADDRESS);
+  const to = process.env.GAME_CONTRACT_ADDR_BYSTR20;
+  try {
+    const callTx = await gearsNFTContract.callWithoutConfirm(
+      'Mint',
+      [
+        {
+          vname: 'to',
+          type: 'ByStr20',
+          value: to,
+        },
+        {
+          vname: 'token_uri',
+          type: 'String',
+          value: tokenUri,
+        },
+      ],
+      {
+        // amount, gasPrice and gasLimit must be explicitly provided
+        version: VERSION,
+        amount: new BN(0),
+        gasPrice: myGasPrice,
+        gasLimit: Long.fromNumber(8000),
+      },
+      false
+    );
+    const confirmedTxn = await callTx.confirm(callTx.id);
+    return confirmedTxn;
+  } catch (e) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
+  }
+};
+
 module.exports = {
   mintHeroTx,
   mintGearTx,
+  getHeroTokenIdCount,
 };

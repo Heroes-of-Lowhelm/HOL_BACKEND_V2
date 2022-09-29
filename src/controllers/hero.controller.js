@@ -40,8 +40,9 @@ const mintHero = catchAsync(async (req, res) => {
   if (await Heroes.isHeroIdTaken(req.body.unique_id)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Hero unique_id is already taken');
   }
-  await heroesService.mintHero(req.body);
-  const hero = await heroesService.createHero(req.body);
+  const mintResult = await heroesService.mintHero(req.body);
+  const tokenId = mintResult['token_id_count'];
+  const hero = await heroesService.createHero({ ...req.body, tokenId });
   res.status(httpStatus.CREATED).send(hero);
 });
 

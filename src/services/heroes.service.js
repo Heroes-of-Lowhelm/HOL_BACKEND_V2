@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { Heroes } = require('../models');
-const { mintHeroTx } = require('./blockchain.service');
+const { mintHeroTx, getHeroTokenIdCount } = require('./blockchain.service');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -52,7 +52,8 @@ const mintHero = async (heroParam) => {
   if (result.receipt.success !== true) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Transaction Error while minting Heroes');
   }
-  return result;
+  const nftId = await getHeroTokenIdCount();
+  return nftId.result;
 };
 
 module.exports = {

@@ -13,6 +13,12 @@ const getHero = {
   }),
 };
 
+const burnOne = {
+  query: Joi.object().keys({
+    unique_id: Joi.string().required(),
+  }),
+};
+
 const updateHero = {
   params: Joi.object().keys({
     userId: Joi.required().custom(objectId),
@@ -58,4 +64,5 @@ module.exports = {
   updateHero,
   deleteHero,
   mintHero,
+  burnOne,
 };
