@@ -63,7 +63,6 @@ const mintHero = async (heroParam) => {
 
 const burnHero = async (tokenId) => {
   const result = await burnHeroes(tokenId);
-  console.log("result==========>", result);
   if (!result) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Zilliqa Error: Error while burning Heroes');
   }

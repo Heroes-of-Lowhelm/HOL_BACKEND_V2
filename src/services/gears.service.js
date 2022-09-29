@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { Gears } = require('../models');
-const { mintGearTx, getGearTokenIdCount } = require('./blockchain.service');
+const { mintGearTx, getGearTokenIdCount, burnGears } = require('./blockchain.service');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -44,6 +44,11 @@ const createGear = async (gearParam) => {
   return Gears.create(gearParam);
 };
 
+// eslint-disable-next-line camelcase
+const deleteGear = async (unique_id) => {
+  return Gears.deleteOne({ unique_id });
+};
+
 const mintGear = async (gearParam) => {
   const result = await mintGearTx(gearParam);
   if (!result) {
@@ -56,10 +61,21 @@ const mintGear = async (gearParam) => {
   return nftId.result;
 };
 
+const burnGear = async (tokenId) => {
+  const result = await burnGears(tokenId);
+  if (!result) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Zilliqa Error: Error while burning Gears');
+  }
+  if (result.receipt.success !== true) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Transaction Error while burning Gears');
+  }
+};
 module.exports = {
   getGearById,
   getGearsByUserId,
   getGearByUniqueId,
   createGear,
   mintGear,
+  burnGear,
+  deleteGear,
 };

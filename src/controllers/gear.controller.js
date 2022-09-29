@@ -22,6 +22,17 @@ const getGear = catchAsync(async (req, res) => {
   res.send(hero);
 });
 
+const burnOne = catchAsync(async (req, res) => {
+  const gear = await gearsService.getGearByUniqueId(req.query.unique_id);
+  if (!gear) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Gear not found');
+  };
+  const { tokenId } = gear;
+  await gearsService.burnGear(tokenId);
+  await gearsService.deleteGear(gear['unique_id']);
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 const mintGear = catchAsync(async (req, res) => {
   const user = await userService.getUserById(req.body.user_id);
   if (!user) {
@@ -41,4 +52,5 @@ module.exports = {
   getGears,
   getGear,
   mintGear,
+  burnOne,
 };

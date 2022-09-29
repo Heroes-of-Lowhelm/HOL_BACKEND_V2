@@ -261,10 +261,39 @@ const burnHeroes = async (tokenId) => {
   }
 };
 
+const burnGears = async (tokenId) => {
+  const gameContract = zilliqa.contracts.at(process.env.GAME_CONTRACT_ADDR_BYSTR20);
+  try {
+    const callTx = await gameContract.callWithoutConfirm(
+      'BurnGears',
+      [
+        {
+          vname: 'id',
+          type: 'Uint256',
+          value: tokenId,
+        },
+      ],
+      {
+        // amount, gasPrice and gasLimit must be explicitly provided
+        version: VERSION,
+        amount: new BN(0),
+        gasPrice: myGasPrice,
+        gasLimit: Long.fromNumber(8000),
+      },
+      false
+    );
+    const confirmedTxn = await callTx.confirm(callTx.id);
+    return confirmedTxn;
+  } catch (e) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
+  }
+};
+
 module.exports = {
   mintHeroTx,
   mintGearTx,
   getHeroTokenIdCount,
   getGearTokenIdCount,
   burnHeroes,
+  burnGears,
 };
