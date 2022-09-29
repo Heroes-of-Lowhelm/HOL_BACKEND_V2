@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { Heroes } = require('../models');
-const { mintHeroTx, getHeroTokenIdCount } = require('./blockchain.service');
+const { mintHeroTx, getHeroTokenIdCount, burnHeroes } = require('./blockchain.service');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -44,6 +44,11 @@ const createHero = async (heroParam) => {
   return Heroes.create(heroParam);
 };
 
+// eslint-disable-next-line camelcase
+const deleteHero = async (unique_id) => {
+  return Heroes.deleteOne({ unique_id });
+};
+
 const mintHero = async (heroParam) => {
   const result = await mintHeroTx(heroParam);
   if (!result) {
@@ -56,10 +61,23 @@ const mintHero = async (heroParam) => {
   return nftId.result;
 };
 
+const burnHero = async (tokenId) => {
+  const result = await burnHeroes(tokenId);
+  console.log("result==========>", result);
+  if (!result) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Zilliqa Error: Error while burning Heroes');
+  }
+  if (result.receipt.success !== true) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Transaction Error while burning Heroes');
+  }
+};
+
 module.exports = {
   getHeroById,
   createHero,
   mintHero,
   getHeroesByUserId,
   getHeroesByUniqueId,
+  burnHero,
+  deleteHero,
 };

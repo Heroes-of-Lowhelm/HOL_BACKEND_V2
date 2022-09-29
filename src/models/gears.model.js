@@ -7,6 +7,10 @@ const gearsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    tokenId: {
+      type: String,
+      required: true,
+    },
     unique_id: {
       type: String,
       required: true,

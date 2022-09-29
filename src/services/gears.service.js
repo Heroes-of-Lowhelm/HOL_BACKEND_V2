@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { Gears } = require('../models');
-const { mintGearTx } = require('./blockchain.service');
+const { mintGearTx, getGearTokenIdCount } = require('./blockchain.service');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -34,7 +34,7 @@ const getGearByUniqueId = async (unique_id) => {
 
 /**
  * Create Hero
- * @param {heroParam} id
+ * @param {gearParam} id
  * @returns {Promise<Heroes>}
  */
 const createGear = async (gearParam) => {
@@ -52,7 +52,8 @@ const mintGear = async (gearParam) => {
   if (result.receipt.success !== true) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Transaction Error while minting Heroes');
   }
-  return result;
+  const nftId = await getGearTokenIdCount();
+  return nftId.result;
 };
 
 module.exports = {

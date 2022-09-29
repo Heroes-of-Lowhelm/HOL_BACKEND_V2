@@ -62,7 +62,7 @@ const generateGearMetadataJson = (gearParam) => {
     // eslint-disable-next-line camelcase
     is_chaotic,
   } = gearParam;
-  let contentData = {
+  const contentData = {
     // eslint-disable-next-line camelcase
     description: `Gears NFT #${unique_id}`,
     // eslint-disable-next-line camelcase
@@ -137,7 +137,7 @@ const mintHeroTx = async (heroParam) => {
   if (!result) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Pinata Error: Error while uploading metadata');
   }
-  const tokenUri = result.data['IpfsHash'];
+  const tokenUri = result.data.IpfsHash;
   const heroesNFTContract = zilliqa.contracts.at(process.env.HEROES_NFT_ADDRESS);
   const to = process.env.GAME_CONTRACT_ADDR_BYSTR20;
   try {
@@ -172,9 +172,19 @@ const mintHeroTx = async (heroParam) => {
 };
 
 const getHeroTokenIdCount = async () => {
-  const heroTokenIdCount = await zilliqa.blockchain.getSmartContractSubState(process.env.HEROES_NFT_ADDRESS, 'token_id_count');
-  console.log("Here Token Id==============>", heroTokenIdCount);
+  const heroTokenIdCount = await zilliqa.blockchain.getSmartContractSubState(
+    process.env.HEROES_NFT_ADDRESS,
+    'token_id_count'
+  );
   return heroTokenIdCount;
+};
+
+const getGearTokenIdCount = async () => {
+  const gearTokenIdCount = await zilliqa.blockchain.getSmartContractSubState(
+    process.env.GEARS_NFT_ADDRESS,
+    'token_id_count'
+  );
+  return gearTokenIdCount;
 };
 
 const mintGearTx = async (gearParam) => {
@@ -189,7 +199,7 @@ const mintGearTx = async (gearParam) => {
   if (!result) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Pinata Error: Error while uploading metadata');
   }
-  const tokenUri = result.data['IpfsHash'];
+  const tokenUri = result.data.IpfsHash;
   const gearsNFTContract = zilliqa.contracts.at(process.env.GEARS_NFT_ADDRESS);
   const to = process.env.GAME_CONTRACT_ADDR_BYSTR20;
   try {
@@ -223,8 +233,38 @@ const mintGearTx = async (gearParam) => {
   }
 };
 
+const burnHeroes = async (tokenId) => {
+  const gameContract = zilliqa.contracts.at(process.env.GAME_CONTRACT_ADDR_BYSTR20);
+  try {
+    const callTx = await gameContract.callWithoutConfirm(
+      'BurnHeroes',
+      [
+        {
+          vname: 'id',
+          type: 'Uint256',
+          value: tokenId,
+        },
+      ],
+      {
+        // amount, gasPrice and gasLimit must be explicitly provided
+        version: VERSION,
+        amount: new BN(0),
+        gasPrice: myGasPrice,
+        gasLimit: Long.fromNumber(8000),
+      },
+      false
+    );
+    const confirmedTxn = await callTx.confirm(callTx.id);
+    return confirmedTxn;
+  } catch (e) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
+  }
+};
+
 module.exports = {
   mintHeroTx,
   mintGearTx,
   getHeroTokenIdCount,
+  getGearTokenIdCount,
+  burnHeroes,
 };

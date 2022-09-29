@@ -22,6 +22,17 @@ const getHero = catchAsync(async (req, res) => {
   res.send(hero);
 });
 
+const burnOne = catchAsync(async (req, res) => {
+  const hero = await heroesService.getHeroesByUniqueId(req.query.unique_id);
+  if (!hero) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Hero not found');
+  };
+  const { tokenId } = hero;
+  await heroesService.burnHero(tokenId);
+  await heroesService.deleteHero(hero['unique_id']);
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 // const updateHero = catchAsync(async (req, res) => {
 //   const user = await userService.updateUserById(req.params.userId, req.body);
 //   res.send(user);
@@ -53,4 +64,5 @@ module.exports = {
   // updateHero,
   // deleteHero,
   mintHero,
+  burnOne,
 };

@@ -30,8 +30,9 @@ const mintGear = catchAsync(async (req, res) => {
   if (await Gears.isGearIdTaken(req.body.unique_id)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Gear unique_id is already taken');
   }
-  await gearsService.mintGear(req.body);
-  const gear = await gearsService.createGear(req.body);
+  const mintResult = await gearsService.mintGear(req.body);
+  const tokenId = mintResult['token_id_count'];
+  const gear = await gearsService.createGear({ ...req.body, tokenId });
   res.status(httpStatus.CREATED).send(gear);
 });
 
