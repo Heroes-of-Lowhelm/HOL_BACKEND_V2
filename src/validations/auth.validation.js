@@ -32,7 +32,7 @@ const googleLogin = {
 
 const logout = {
   body: Joi.object().keys({
-    refreshToken: Joi.string().required(),
+    email: Joi.string().email().required(),
   }),
 };
 
@@ -49,6 +49,12 @@ const forgotPassword = {
 };
 
 const resendCode = {
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
+  }),
+};
+
+const confirmLogin = {
   body: Joi.object().keys({
     email: Joi.string().email().required(),
   }),
@@ -80,4 +86,5 @@ module.exports = {
   resendCode,
   googleRegister,
   googleLogin,
+  confirmLogin,
 };

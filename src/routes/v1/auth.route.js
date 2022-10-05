@@ -10,12 +10,15 @@ router.post('/google-register', validate(authValidation.googleRegister), authCon
 
 router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail);
 router.post('/login', validate(authValidation.login), authController.login);
-router.post('/google-login', validate(authValidation.googleLogin), authController.googleLogin);
+router.post('/logout', validate(authValidation.logout), authController.logout);
 
+router.post('/google-login', validate(authValidation.googleLogin), authController.googleLogin);
 router.post('/forgot-password', validate(authValidation.forgotPassword), authController.forgotPassword);
+
 router.post('/reset-password', validate(authValidation.resetPassword), authController.resetPassword);
 
 router.post('/resend-code', validate(authValidation.resendCode), authController.sendVerificationCode);
+router.put('/confirm-login', validate(authValidation.confirmLogin), authController.confirmLogin);
 
 module.exports = router;
 

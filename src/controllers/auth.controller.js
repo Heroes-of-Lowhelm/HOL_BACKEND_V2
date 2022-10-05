@@ -40,7 +40,7 @@ const googleLogin = catchAsync(async (req, res) => {
 });
 
 const logout = catchAsync(async (req, res) => {
-  await authService.logout(req.body.refreshToken);
+  await authService.logout(req.body.email);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -79,6 +79,12 @@ const verifyEmail = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const confirmLogin = catchAsync(async (req, res) => {
+  const { email } = req.body;
+  await authService.confirmLogin(email);
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 module.exports = {
   register,
   googleRegister,
@@ -91,4 +97,5 @@ module.exports = {
   verifyEmail,
   sendVerificationCode,
   googleLogin,
+  confirmLogin,
 };

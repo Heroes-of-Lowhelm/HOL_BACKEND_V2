@@ -21,6 +21,14 @@ const loginUserWithEmailAndPassword = async (email, password) => {
   return user;
 };
 
+const confirmLogin = async (email) => {
+  const user = await userService.getUserByEmail(email);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  await userService.updateUserById(user.id, { isLoggedIn: true });
+};
+
 const loginUserWithGoogle = async (email, name) => {
   const user = await userService.getUserByEmail(email);
   if (!user || user.name !== name || !user.isGoogle) {
@@ -31,15 +39,19 @@ const loginUserWithGoogle = async (email, name) => {
 
 /**
  * Logout
- * @param {string} refreshToken
+ * @param {string} email
  * @returns {Promise}
  */
-const logout = async (refreshToken) => {
-  const refreshTokenDoc = await Token.findOne({ token: refreshToken, type: tokenTypes.REFRESH, blacklisted: false });
-  if (!refreshTokenDoc) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Not found');
+const logout = async (email) => {
+  const user = await userService.getUserByEmail(email);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
-  await refreshTokenDoc.remove();
+  if (user.isGoogle) {
+    await userService.updateUserById(user.id, { isLoggedIn: false, isEmailVerified: false });
+  } else {
+    await userService.updateUserById(user.id, { isLoggedIn: false });
+  }
 };
 
 /**
@@ -107,4 +119,5 @@ module.exports = {
   resetPassword,
   verifyEmail,
   loginUserWithGoogle,
+  confirmLogin,
 };

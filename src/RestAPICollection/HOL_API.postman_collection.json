@@ -676,6 +676,64 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "confirm-login",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/v1/auth/confirm-login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"confirm-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "grishasatrian9@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/v1/auth/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

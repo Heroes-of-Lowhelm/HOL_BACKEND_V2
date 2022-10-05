@@ -15,7 +15,7 @@ const getCodeByEmail = async (email) => {
 const updateCodeByEmail = async (email, updateBody) => {
   const code = await getCodeByEmail(email);
   if (!code) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Code not found');
   }
 
   Object.assign(code, updateBody);

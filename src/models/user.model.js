@@ -43,6 +43,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isLoggedIn: {
+      type: Boolean,
+      default: false,
+    },
     isGoogle: {
       type: Boolean,
       default: false,
