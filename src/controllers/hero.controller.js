@@ -57,11 +57,41 @@ const mintHero = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(hero);
 });
 
+const batchMintHero = catchAsync(async (req, res) => {
+  const data = req.body;
+  const user = await userService.getUserById(data[0].user_id);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < 10; i++) {
+    const singleData = data[i];
+    // eslint-disable-next-line no-await-in-loop
+    if (await Heroes.isHeroIdTaken(singleData.unique_id)) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Hero unique_id is already taken');
+    }
+  }
+
+  const mintResult = await heroesService.batchMintHero(data);
+  const tokenId = mintResult['token_id_count'];
+  // eslint-disable-next-line no-plusplus
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < 10; i++) {
+    const singleData = data[i];
+    // eslint-disable-next-line no-await-in-loop
+    await heroesService.createHero({ ...singleData, tokenId: tokenId - (9 - i) });
+  }
+  res.status(httpStatus.CREATED).send({
+    'First NFT Token ID': tokenId - 9,
+    'Last NFT Token ID': tokenId - 0,
+  });
+});
+
 module.exports = {
   createHero,
   getHeroes,
   getHero,
-  // updateHero,
+  batchMintHero,
   // deleteHero,
   mintHero,
   burnOne,

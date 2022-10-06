@@ -2,7 +2,6 @@ const httpStatus = require('http-status');
 const tokenService = require('./token.service');
 const userService = require('./user.service');
 const codeService = require('./code.service');
-const Token = require('../models/token.model');
 const Code = require('../models/code.model');
 const ApiError = require('../utils/ApiError');
 const { tokenTypes } = require('../config/tokens');

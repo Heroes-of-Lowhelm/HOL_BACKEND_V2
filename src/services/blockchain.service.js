@@ -171,6 +171,63 @@ const mintHeroTx = async (heroParam) => {
   }
 };
 
+const batchMintHeroTx = async (heroesParam) => {
+  const tokenUris = [];
+  // eslint-disable-next-line camelcase
+  const to_token_uri_pair = [];
+  const to = process.env.GAME_CONTRACT_ADDR_BYSTR20;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const heroParam of heroesParam) {
+    const data = generateHeroMetadataJson(heroParam);
+    const config = getConfig(data);
+    let result;
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      result = await axios(config);
+    } catch (e) {
+      throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
+    }
+    if (!result) {
+      throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Pinata Error: Error while uploading metadata');
+    }
+    const tokenUri = result.data.IpfsHash;
+    tokenUris.push(tokenUri);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const uri of tokenUris) {
+    to_token_uri_pair.push({
+      constructor: 'Pair',
+      argtypes: ['ByStr20', 'String'],
+      arguments: [to, uri],
+    });
+  }
+  const heroesNFTContract = zilliqa.contracts.at(process.env.HEROES_NFT_ADDRESS);
+  try {
+    const callTx = await heroesNFTContract.callWithoutConfirm(
+      'BatchMint',
+      [
+        {
+          vname: 'to_token_uri_pair_list',
+          type: 'List (Pair ByStr20 String)',
+          value: to_token_uri_pair,
+        },
+      ],
+      {
+        // amount, gasPrice and gasLimit must be explicitly provided
+        version: VERSION,
+        amount: new BN(0),
+        gasPrice: myGasPrice,
+        gasLimit: Long.fromNumber(8000),
+      },
+      false
+    );
+    const confirmedTxn = await callTx.confirm(callTx.id);
+    return confirmedTxn;
+  } catch (e) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, e);
+  }
+};
+
 const getHeroTokenIdCount = async () => {
   const heroTokenIdCount = await zilliqa.blockchain.getSmartContractSubState(
     process.env.HEROES_NFT_ADDRESS,
@@ -296,4 +353,5 @@ module.exports = {
   getGearTokenIdCount,
   burnHeroes,
   burnGears,
+  batchMintHeroTx,
 };

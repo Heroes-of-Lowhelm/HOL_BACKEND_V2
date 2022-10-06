@@ -6,6 +6,7 @@ const heroController = require('../../controllers/hero.controller');
 const router = express.Router();
 
 router.post('/mint-hero', validate(heroValidation.mintHero), heroController.mintHero);
+router.post('/batch-mint-hero', validate(heroValidation.batchMintHero), heroController.batchMintHero);
 router.get('/get-heroes', validate(heroValidation.getHeroes), heroController.getHeroes);
 router.get('/get-one', validate(heroValidation.getHero), heroController.getHero);
 router.delete('/burn', validate(heroValidation.burnOne), heroController.burnOne);

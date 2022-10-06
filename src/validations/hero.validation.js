@@ -58,6 +58,10 @@ const mintHero = {
   }),
 };
 
+const batchMintHero = {
+  body: Joi.array().length(10),
+};
+
 module.exports = {
   getHeroes,
   getHero,
@@ -65,4 +69,5 @@ module.exports = {
   deleteHero,
   mintHero,
   burnOne,
+  batchMintHero,
 };
