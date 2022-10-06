@@ -201,6 +201,34 @@
 			"name": "Hero",
 			"item": [
 				{
+					"name": "batch-mint-hero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 1,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 2,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 3,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 4,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 5,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 6,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 7,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 8,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 9,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 10,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 5,\r\n        \"regular_lv\": 4,\r\n        \"passive_lv\": 5,\r\n        \"skill1_lv\": 6,\r\n        \"skill2_lv\": 7,\r\n        \"is_chaotic\": true,\r\n        \"sub_level\": 25,\r\n        \"exp\": 33,\r\n        \"attack_value\": 120,\r\n        \"hp_value\": 25,\r\n        \"speed_value\": 3,\r\n        \"resistance_value\": 4\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/heroes/batch-mint-hero",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"heroes",
+								"batch-mint-hero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "mint-hero",
 					"request": {
 						"method": "POST",
