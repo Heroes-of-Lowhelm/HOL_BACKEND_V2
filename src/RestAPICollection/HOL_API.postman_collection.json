@@ -271,7 +271,7 @@
 								},
 								{
 									"key": "unique_id",
-									"value": "2",
+									"value": "12",
 									"type": "text"
 								},
 								{
@@ -337,6 +337,12 @@
 								{
 									"key": "resistance_value",
 									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "is_starter",
+									"value": "true",
+									"description": "optional",
 									"type": "text"
 								}
 							]
