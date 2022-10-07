@@ -10,6 +10,34 @@
 			"name": "Gear",
 			"item": [
 				{
+					"name": "batch-mint-gear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 1,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 5,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"sub_stat3\": \"Attack +3.12\",\r\n        \"sub_stat4\": \"HP +32.43\",\r\n        \"sub_stat5\": \"Speed +45.67\",\r\n        \"set\": \"Life\",\r\n        \"is_chaotic\": true\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 2,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n     {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 3,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 4,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 5,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 6,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 7,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 8,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 9,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    },\r\n    {\r\n        \"user_id\": \"633557061764b239dceef194\",\r\n        \"unique_id\": 10,\r\n        \"item_name\": \"Calix\",\r\n        \"star_grade\": 3,\r\n        \"main_stat\": \"Attack +25.34\",\r\n        \"sub_stat1\": \"HP% +5\",\r\n        \"sub_stat2\": \"Armor% +4\",\r\n        \"is_chaotic\": false\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/gears/batch-mint-gear",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"gears",
+								"batch-mint-gear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get-one",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true

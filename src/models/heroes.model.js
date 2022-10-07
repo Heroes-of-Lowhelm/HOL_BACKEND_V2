@@ -67,6 +67,10 @@ const heroesSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    is_starter: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

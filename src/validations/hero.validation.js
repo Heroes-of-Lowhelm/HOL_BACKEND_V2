@@ -55,6 +55,7 @@ const mintHero = {
     hp_value: Joi.number().required(),
     speed_value: Joi.number().required(),
     resistance_value: Joi.number().required(),
+    is_starter: Joi.boolean(),
   }),
 };
 
