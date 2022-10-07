@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { Gears } = require('../models');
-const { mintGearTx, getGearTokenIdCount, burnGears } = require('./blockchain.service');
+const { mintGearTx, getGearTokenIdCount, burnGears, batchMintHeroTx, getHeroTokenIdCount, batchMintGearTx } = require('./blockchain.service');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -61,6 +61,18 @@ const mintGear = async (gearParam) => {
   return nftId.result;
 };
 
+const batchMintGear = async (gearsParam) => {
+  const result = await batchMintGearTx(gearsParam);
+  if (!result) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Zilliqa Error: Error while minting Gears');
+  }
+  if (result.receipt.success !== true) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'Transaction Error while minting Gears');
+  }
+  const nftId = await getGearTokenIdCount();
+  return nftId.result;
+};
+
 const burnGear = async (tokenId) => {
   const result = await burnGears(tokenId);
   if (!result) {
@@ -78,4 +90,5 @@ module.exports = {
   mintGear,
   burnGear,
   deleteGear,
+  batchMintGear,
 };

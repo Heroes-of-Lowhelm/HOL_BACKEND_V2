@@ -6,6 +6,7 @@ const gearController = require('../../controllers/gear.controller');
 const router = express.Router();
 
 router.post('/mint-gear', validate(gearValidation.mintGear), gearController.mintGear);
+router.post('/batch-mint-gear', validate(gearValidation.batchMintGear), gearController.batchMintGear);
 router.get('/get-gears', validate(gearValidation.getGears), gearController.getGears);
 router.get('/get-one', validate(gearValidation.getGear), gearController.getGear);
 router.delete('/burn', validate(gearValidation.burnOne), gearController.burnOne);

@@ -55,6 +55,10 @@ const mintGear = {
   }),
 };
 
+const batchMintGear = {
+  body: Joi.array().length(10),
+};
+
 module.exports = {
   getGears,
   getGear,
@@ -62,4 +66,5 @@ module.exports = {
   deleteGear,
   mintGear,
   burnOne,
+  batchMintGear,
 };
