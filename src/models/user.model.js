@@ -67,6 +67,22 @@ const userSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    gold: {
+      type: Number,
+      default: 0,
+    },
+    ruby: {
+      type: Number,
+      default: 0,
+    },
+    precious_metals: {
+      type: Number,
+      default: 0,
+    },
+    soul_fragment: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
