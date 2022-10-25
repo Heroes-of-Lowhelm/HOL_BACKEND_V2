@@ -742,7 +742,7 @@
 				{
 					"name": "confirm-login",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
